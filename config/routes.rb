@@ -9,6 +9,7 @@ end
 namespace :account do
   resources :groups
   resources :posts
+  resources :movies
 end
 
 root 'groups#index'
