@@ -21,5 +21,19 @@ class User < ApplicationRecord
            participated_movies.include?(movie)
          end
 
+         def join!(group)
+          participated_groups << group
+        end
 
+        def quit!(group)
+          participated_groups.delete(group)
+        end
+
+        def join!(movie)
+          participated_movies << movie
+        end
+
+        def quit!(movie)
+          participated_movies.delete(movie)
+        end
 end

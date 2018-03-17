@@ -10,6 +10,10 @@ namespace :account do
   resources :groups
   resources :posts
   resources :movies do
+    member do
+      post :join
+      post :quit
+    end
     resources :comments
   end
 end

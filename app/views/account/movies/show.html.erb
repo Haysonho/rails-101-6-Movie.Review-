@@ -1,5 +1,16 @@
 <div class="col-md-12">
+  <span>
+    <% if current_user && current_user.is_member?(@movie) %>
+    <label class="label label-success"> 已收藏 </label>
+    <%= link_to("取消收藏", quit_account_movie_path(@movie), method: :post, class: "btn btn-default") %>
+    <% else %>
+    <%= link_to("收藏", join_account_movie_path(@movie), method: :post, class: "btn btn-default") %>
+    <label class="label label-warning"> 未收藏 </label>
+    <% end %>
+  </span>
+  <% if current_user && current_user.is_member?(@movie)  %>
   <%= link_to("留下影评", new_account_movie_comment_path(@movie), class: "btn btn-danger pull-right") %>
+  <% end %>
   <h2><%= @movie.name %></h2>
   <p class="text-center"><%= @movie.review %></p>
 </div>

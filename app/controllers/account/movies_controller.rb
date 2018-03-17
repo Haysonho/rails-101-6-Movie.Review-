@@ -1,5 +1,5 @@
 class Account::MoviesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user! , only: [:new, :create, :join, :quit]
 
   def index
   @movies = Movie.all
@@ -20,6 +20,32 @@ class Account::MoviesController < ApplicationController
   def show
     @movie = Movie.find(params[:id])
     @comments = @movie.comments
+  end
+
+  def join
+    @movie = Movie.find(params[:id])
+
+    if !current_user.is_member?(@movie)
+      current_user.join!(@movie)
+      flash[:notice] = "收藏成功"
+    else
+      flash[:warning] = "您已收藏"
+    end
+
+    redirect_to account_movie_path(@movie)
+  end
+
+  def quit
+    @movie = Movie.find(params[:id])
+
+    if current_user.is_member?(@movie)
+      current_user.quit!(@movie)
+      flash[:alert] = "取消收藏"
+    else
+      flash[:warning] = "无法取消"
+    end
+
+    redirect_to account_movie_path(@movie)
   end
 
   private
