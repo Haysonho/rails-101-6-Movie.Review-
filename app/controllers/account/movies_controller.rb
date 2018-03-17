@@ -19,6 +19,7 @@ class Account::MoviesController < ApplicationController
 
   def show
     @movie = Movie.find(params[:id])
+    @comments = @movie.comments
   end
 
   private

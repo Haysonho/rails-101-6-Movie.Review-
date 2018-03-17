@@ -6,8 +6,8 @@
     <thead>
       <tr>
         <td>电影名</td>
-        <td>影评</td>
-        <td>影评人</td>
+        <td>简介</td>
+        
       </tr>
     </thead>
     <tbody>
@@ -15,7 +15,7 @@
       <tr>
         <td><%= link_to(movie.name, account_movie_path(movie)) %></td>
         <td><%= movie.review %></td>
-        <td><%= movie.user.email %></td>
+
       </tr>
       <% end %>
     </tbody>
